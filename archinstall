@@ -65,7 +65,6 @@ sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 pacstrap -i /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
-nano /mnt/etc/fstab
 arch-chroot /mnt
 mkdir /boot/efi
 nano /etc/locale.gen
