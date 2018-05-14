@@ -6,23 +6,23 @@
 # This script will install Arch Linux in UEFI. This script in specific was meant for personal use but feel free to edit and use as you please.
 
 echo ""
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "%%%%%"
-echo "%%%%% This script will now begin the Installation of Arch Linux"
-echo "%%%%%"
-echo "%%%%% If you are not running in EFI then please stop and look over the script"
-echo "%%%%%"
-echo "%%%%% Please take careful note of the console output"
-echo "%%%%%"
-echo "%%%%% If you experience any issues with this script, please report them"
-echo "%%%%%"
-echo "%%%%% Look over the README.md to know what to input when needed"
-echo "%%%%%"
-echo "%%%%% Script will begin in 10 seconds"
-echo "%%%%%"
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% This script will now begin the Installation of Arch Linux.         %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% If you are not running in EFI then stop and look over the script.  %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% Please take careful note of the console output.                    %%%%%"
+echo "%%%%%                                                                    %%%%%" 
+echo "%%%%% If you experience any issues with this script, please report them. %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% Look over the README.md to know what to input when needed.         %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% Script will begin in 10 seconds.                                   %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo ""
 
 sleep 10
@@ -30,9 +30,9 @@ sleep 10
 echo ""
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "%%%%%"
-echo "%%%%% Preparing drive for Installation"
-echo "%%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%    Preparing drive for Installation    %%%%%"
+echo "%%%%%                                        %%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo ""
@@ -49,12 +49,14 @@ mkfs.ext4 /dev/sda3
 echo ""
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "%%%%%"
-echo "%%%%% Installing Arch Linux"
-echo "%%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%         Installing Arch Linux          %%%%%"
+echo "%%%%%                                        %%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo ""
+
+sleep 2
 
 mount /dev/sda3 /mnt
 mkdir /mnt/boot/
@@ -65,14 +67,20 @@ sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 pacstrap -i /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
+
+echo ""
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%     Arch Linux is now Installed        %%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%     Will now chroot into the OS        %%%%%"
+echo "%%%%%                                        %%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo ""
+
+sleep 5
+
 arch-chroot /mnt
-mkdir /boot/efi
-nano /etc/locale.gen
-locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
-export LANG=en_US.UTF-8
-ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
-hwclock --systohc --utc
-echo UnluckyZ170 > /etc/hostname
-systemctl enable fstrim.timer
-nano /etc/pacman.conf
