@@ -43,8 +43,8 @@ mkdir /etc/pacman.d/hooks
 nano /etc/pacman.d/hooks/nvidia.hook
 pacman -S grub -efibootmgr
 mount /dev/sda1 /boot/efi
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+#grub-install /dev/sda
+#grub-mkconfig -o /boot/grub/grub.cfg
 sudo pacman -S mesa xorg-server xorg-apps xorg-xinit xorg-twm xorg-xclock xterm
 
 echo ""
