@@ -9,7 +9,7 @@ Personal Install and Configuration of Arch Linux
 
 ## How to get it
 
-- get the script: ` https://github.com/unluckytech/ai/tarball/master -O - | tar xz `
+- get the script: ` https://github.com/unluckytech/cali/tarball/master -O - | tar xz `
 
 
 ## ArchInstall SCRIPT
