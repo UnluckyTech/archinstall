@@ -27,3 +27,6 @@ Personal Install and Configuration of Arch Linux
 - Install Nvidia GPU Drivers
 - Install Grub
 - Install Xorg
+
+## NOTE
+ - This is meant for my own personal use. I do not recommend using this script unless you know what you are doing.
