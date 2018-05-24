@@ -41,10 +41,10 @@ pacman -S bash-completion nvidia-dkms linux-headers intel-ucode libglvnd nvidia-
 sudo nano /etc/mkinitcpio.conf
 mkdir /etc/pacman.d/hooks
 nano /etc/pacman.d/hooks/nvidia.hook
-sudo pacman -S grub -efibootmgr
+sudo pacman -S grub efibootmgr
 mount /dev/sda1 /boot/efi
-sudo grub-install /dev/sda
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
 sudo pacman -S mesa xorg-server xorg-apps xorg-xinit xorg-twm xorg-xclock xterm
 
 echo ""
