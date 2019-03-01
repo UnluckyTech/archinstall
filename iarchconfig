@@ -1,0 +1,69 @@
+gdisk#!/bin/bash --
+
+echo ""
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%   This script will now begin the Configuration of Arch Linux.      %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% If you are not running in EFI then stop and look over the script.  %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%       Please take careful note of the console output.              %%%%%"
+echo "%%%%%                                                                    %%%%%" 
+echo "%%%%%  If you experience any issues then please look over the script.    %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%    Look over the manual to know what to input when needed.         %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%               Script will begin in 10 seconds.                     %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo ""
+
+sleep 10
+
+mkdir /boot/efi
+nano /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
+hwclock --systohc --utc
+echo UnluckyZ170 > /etc/hostname
+systemctl enable fstrim.timer
+nano /etc/pacman.conf
+pacman -Sy
+passwd
+useradd -m -g users -G wheel,storage,power -s /bin/bash unluckytech
+passwd unluckytech
+EDITOR=nano visudo
+pacman -S bash-completion linux-headers intel-ucode
+sudo pacman -S grub efibootmgr
+mount /dev/sda1 /boot/efi
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+sudo pacman -S mesa xorg-server xorg-apps xorg-xinit xorg-twm xorg-xclock xterm
+
+echo ""
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%            Arch Linux has been successfully configured!            %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%                 You will now exit out of chroot.                   %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%% Once you have booted into the system enter startx to test display. %%%%%"
+echo "%%%%%                                                                    %%%%%" 
+echo "%%%%%  If you experience any issues then please look over the script.    %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%     Look over the manual to know what to input when needed.        %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%                   Script will exit in 10 seconds.                  %%%%%"
+echo "%%%%%                                                                    %%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo ""
+
+sleep 10
+
+exit
