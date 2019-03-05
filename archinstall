@@ -39,12 +39,12 @@ echo ""
 
 sleep 2
 
-gdisk /dev/sda
-cgdisk /dev/sda
-mkfs.fat -F32 /dev/sda1
-mkswap /dev/sda2
-swapon /dev/sda2
-mkfs.ext4 /dev/sda3
+gdisk /dev/nvme0n1
+cgdisk /dev/nvme0n1
+mkfs.fat -F32 /dev/nvme0n1p1
+mkswap /dev/nvme0n1p2
+swapon /dev/nvme0n1p2
+mkfs.ext4 /dev/nvme0n1p3
 
 echo ""
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
@@ -58,10 +58,10 @@ echo ""
 
 sleep 2
 
-mount /dev/sda3 /mnt
+mount /dev/nvme0n1p3 /mnt
 mkdir /mnt/boot/
 mkdir /mnt/home
-mount /dev/sda1 /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot
 pacstrap -i /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
