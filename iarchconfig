@@ -29,7 +29,7 @@ echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
 hwclock --systohc --utc
-echo UnluckyZ170 > /etc/hostname
+echo UnluckyX1 > /etc/hostname
 systemctl enable fstrim.timer
 nano /etc/pacman.conf
 pacman -Sy
@@ -39,8 +39,8 @@ passwd unluckytech
 EDITOR=nano visudo
 pacman -S bash-completion linux-headers intel-ucode
 sudo pacman -S grub efibootmgr
-mount /dev/sda1 /boot/efi
-grub-install /dev/sda
+mount /dev/nvme0n1p1 /boot/efi
+grub-install /dev/nvme0n1
 grub-mkconfig -o /boot/grub/grub.cfg
 sudo pacman -S mesa xorg-server xorg-apps xorg-xinit xorg-twm xorg-xclock xterm
 
