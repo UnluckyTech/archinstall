@@ -24,7 +24,6 @@ Personal Install and Configuration of Arch Linux
 - Create and configure new user
 - Install and configure sudo
 - Install additional repositories
-- Install Nvidia GPU Drivers
 - Install Grub
 - Install Xorg
 
