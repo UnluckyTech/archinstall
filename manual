@@ -62,7 +62,7 @@ Uncomment every mirror
 Check the top 6 mirrors you have the best connection to
     • rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 Install Arch base files
-    • pacstrap -i /mnt base base-devel
+    • pacstrap -i /mnt base base-devel linux linux-firmware
 Generate fstab file
     • genfstab -U -p /mnt >> /mnt/etc/fstab
 Check fstab
