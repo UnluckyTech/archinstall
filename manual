@@ -109,7 +109,7 @@ un-comment
 At the bottom add this line and save
     • Defaults rootpw
 Make it easier to auto-complete and some other stuff hehe
-    • pacman -S bash-completion nvidia-dkms linux-headers intel-ucode libglvnd nvidia-utils opencl-nvidia lib32-libglvnd lib32-nvidia-utils lib32-opencl-nvidia nvidia-settings
+    • pacman -S bash-completion nvidia-dkms linux-headers intel-ucode libglvnd
 Check if EFI variables are mounted
     • mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 Set nvidia drm kernal modules
